@@ -1,0 +1,15 @@
+{
+	"folders": [
+		{
+			"name": "sesion.",
+			"path": ".."
+		},
+		{
+			"name": "assets",
+			"path": "../../../../Downloads/Bloque-I-Midterm-main/assets"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "sesion."
+	}
+}
