@@ -59,3 +59,55 @@ footer {
     right: 2.2vh;
     width: 10vh;
 }
+
+/* Button Styles */
+.buttons-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    gap: 2rem;
+    z-index: 10;
+}
+
+.button {
+    width: 80px;
+    height: 80px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: "Formula", sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: white;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.button-red {
+    background-color: #e74c3c;
+}
+
+.button-red:hover {
+    background-color: #c0392b;
+}
+
+.button-blue {
+    background-color: #3498db;
+}
+
+.button-blue:hover {
+    background-color: #2980b9;
+}
