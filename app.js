@@ -26,6 +26,20 @@ const mesh = new THREE.Mesh(geo, material);
 scene.add(mesh);
 mesh.position.z = -7;
 
+// Click-to-scale animation on the canvas using GSAP
+let scaleStep = 0.25; // how much to grow per click
+canvas.addEventListener("click", function () {
+    const current = mesh.scale.x;
+    const target = current + scaleStep;
+    gsap.to(mesh.scale, {
+        x: target,
+        y: target,
+        z: target,
+        duration: 0.9,
+        ease: "bounce.out",
+    });
+});
+
 // 3.2 Crear luces.
 const frontLight = new THREE.PointLight("#ffffff", 300, 100);
 frontLight.position.set(7, 3, 3);
