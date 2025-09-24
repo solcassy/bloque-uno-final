@@ -65,12 +65,12 @@ const loader = new THREE.TextureLoader(manager);
 
 // 3. Cargamos texturas guardadas en el folder del proyecto.
 const tex = {
-   albedo: loader.load('./assets/texturas/bricks/albedo.png'),
-   ao: loader.load('./assets/texturas/bricks/ao.png'),
-   metalness: loader.load('./assets/texturas/bricks/metallic.png'),
-   normal: loader.load('./assets/texturas/bricks/normal.png'),
-   roughness: loader.load('./assets/texturas/bricks/roughness.png'),
-   displacement: loader.load('./assets/texturas/bricks/displacement.png'),
+   albedo: loader.load('./assets/texturas/beige-stonework_albedo.png'),
+   ao: loader.load('./assets/texturas/beige-stonework_ao.png'),
+   metalness: loader.load('./assets/texturas/beige-stonework_metallic.png'),
+   normal: loader.load('./assets/texturas/beige-stonework_normal-ogl.png'),
+   roughness: loader.load('./assets/texturas/beige-stonework_roughness.png'),
+   displacement: loader.load('./assets/texturas/beige-stonework_height.png'),
 };
 
 // 4. Definimos variables y la función que va a crear el material al cargar las texturas.
