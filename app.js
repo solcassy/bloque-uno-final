@@ -16,7 +16,7 @@ renderer.setClearColor("#0a0c2c");
 const camera = new THREE.PerspectiveCamera(45, canvas.width / canvas.height, 0.1, 1000);
 
 // 3.1 Configurar mesh.
-const geo = new THREE.TorusKnotGeometry(1, 0.35, 128, 5, 2);
+const geo = new THREE.SphereGeometry(1.5, 32, 32);
 
 const material = new THREE.MeshStandardMaterial({
     color: "#ffffff",
