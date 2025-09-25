@@ -16,7 +16,7 @@ renderer.setClearColor("#0a0c2c");
 const camera = new THREE.PerspectiveCamera(45, canvas.width / canvas.height, 0.1, 1000);
 
 // 3.1 Configurar mesh.
-const geo = new THREE.SphereGeometry(1.5, 32, 32);
+const geo = new THREE.OctahedronGeometry(1.5, 0);
 
 const material = new THREE.MeshStandardMaterial({
     color: "#ffffff",
@@ -99,7 +99,7 @@ function createMaterial() {
        roughnessMap: tex.roughness,
        displacementMap: tex.displacement,
        displacementScale: 1,
-       side: THREE.FrontSide,
+       side: THREE.DoubleSide,
        // wireframe: true,
    });
 
