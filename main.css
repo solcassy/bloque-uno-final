@@ -63,10 +63,11 @@ footer {
 .buttons-container {
     position: absolute;
     top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    right: 2rem;
+    transform: translateY(-50%);
     display: flex;
-    gap: 2rem;
+    flex-direction: column;
+    gap: 1rem;
     z-index: 10;
 }
 
@@ -109,4 +110,20 @@ footer {
 
 .button-blue:hover {
     background-color: #2980b9;
+}
+#stoneworkbutton {
+    
+    background-image: url('./assets/texturas/beige-stonework_albedo.png');
+}
+
+#bricksbutton {
+   
+    background-image: url('./assets/texturas/roughness_albedo.png');
+}
+
+.materialSwitch {
+    position: relative;
+    width: 80px;
+    height: 80px;
+
 }

@@ -16,7 +16,7 @@ renderer.setClearColor("#0a0c2c");
 const camera = new THREE.PerspectiveCamera(45, canvas.width / canvas.height, 0.1, 1000);
 
 // 3.1 Configurar mesh.
-const geo = new THREE.OctahedronGeometry(1.5, 0);
+const geo = new THREE.SphereGeometry(1.5, 32, 32);
 
 const material = new THREE.MeshStandardMaterial({
     color: "#ffffff",
@@ -158,6 +158,7 @@ var mouse = {
  function updateMouseData(eventData) {
     updateMousePosition(eventData);
     calculateNormalOffset();
+    
  }
  function updateMousePosition(eventData) {
     mouse.x = eventData.clientX;
@@ -171,13 +172,19 @@ var mouse = {
     mouse.normalOffset.x = ( (mouse.x - windowCenter.x) / canvas.width ) * 2;
     mouse.normalOffset.y = ( (mouse.y - windowCenter.y) / canvas.height ) * 2;
  }
+
+function lerpDistanceToCenter() {
+   mouse.lerpNormalOffset.x += (mouse.normalOffset.x - mouse.lerpNormalOffset.x) * mouse.cof;
+   mouse.lerpNormalOffset.y += (mouse.normalOffset.y - mouse.lerpNormalOffset.y) * mouse.cof;
+}
+
  
  window.addEventListener("mousemove", updateMouseData);
 
 
  function updateCameraPosition() {
-    camera.position.x = mouse.normalOffset.x * mouse.gazeRange.x;
-    camera.position.y = -mouse.normalOffset.y * mouse.gazeRange.y;
+    camera.position.x = mouse.lerpNormalOffset.x * mouse.gazeRange.x;
+    camera.position.y = -mouse.lerpNormalOffset.y * mouse.gazeRange.y;
  }
   
 // D) Interacción con teclado: alternar modo wireframe con la tecla "W".
@@ -210,6 +217,8 @@ function animate() {
     lerpScrollY()
    // mesh.rotation.x -= 0.005;
     updateMeshRotation();
+    lerpDistanceToCenter();
+
     updateCameraPosition();
     camera.lookAt(mesh.position);
     renderer.render(scene, camera);
