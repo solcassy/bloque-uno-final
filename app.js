@@ -180,6 +180,22 @@ var mouse = {
     camera.position.y = -mouse.normalOffset.y * mouse.gazeRange.y;
  }
   
+// D) Interacción con teclado: alternar modo wireframe con la tecla "W".
+window.addEventListener("keydown", function (event) {
+    // Usamos event.key para detectar la letra presionada. Acepta "w" y "W".
+    if (event.key === "w" || event.key === "W") {
+        // Soporta materiales únicos o arreglos de materiales
+        if (Array.isArray(mesh.material)) {
+            mesh.material.forEach(function (m) {
+                if (m && typeof m.wireframe === "boolean") {
+                    m.wireframe = !m.wireframe;
+                }
+            });
+        } else if (mesh.material && typeof mesh.material.wireframe === "boolean") {
+            mesh.material.wireframe = !mesh.material.wireframe;
+        }
+    }
+});
 
 ///////// FIN DE LA CLASE.
 
