@@ -12,7 +12,7 @@ canvas.height = window.innerHeight;
 const scene = new THREE.Scene();
 const renderer = new THREE.WebGLRenderer({ canvas: canvas });
 renderer.setSize(canvas.width, canvas.height);
-renderer.setClearColor("#0a0c2c");
+renderer.setClearColor("#770058");
 const camera = new THREE.PerspectiveCamera(45, canvas.width / canvas.height, 0.1, 1000);
 
 // 3.1 Configurar mesh.
@@ -41,11 +41,11 @@ canvas.addEventListener("click", function () {
 });
 
 // 3.2 Crear luces.
-const frontLight = new THREE.PointLight("#ffffff", 300, 100);
+const frontLight = new THREE.PointLight("#F7A1C4", 300, 100);
 frontLight.position.set(7, 3, 3);
 scene.add(frontLight);
 
-const rimLight = new THREE.PointLight("#0066ff", 50, 100);
+const rimLight = new THREE.PointLight("#FF70A6", 50, 100);
 rimLight.position.set(-7, -3, -7);
 scene.add(rimLight);
 
@@ -78,7 +78,9 @@ manager.onError = function (url) {
 const loader = new THREE.TextureLoader(manager);
 
 // 3. Cargamos texturas guardadas en el folder del proyecto.
-const tex = {
+const StoneWorkTextures = {
+   
+   
    albedo: loader.load('./assets/texturas/beige-stonework_albedo.png'),
    ao: loader.load('./assets/texturas/beige-stonework_ao.png'),
    metalness: loader.load('./assets/texturas/beige-stonework_metallic.png'),
@@ -86,24 +88,31 @@ const tex = {
    roughness: loader.load('./assets/texturas/beige-stonework_roughness.png'),
    displacement: loader.load('./assets/texturas/beige-stonework_height.png'),
 };
+const rustedTextures = {
+   albedo: loader.load('./assets/texturas/rusted/albedo.png'),
+   metalness: loader.load('./assets/texturas/rusted/metallic.png'),
+   normal: loader.load('./assets/texturas/rusted/normal.png'),
+   roughness: loader.load('./assets/texturas/rusted/roughness.png'),
+};
+
 
 // 4. Definimos variables y la función que va a crear el material al cargar las texturas.
-var pbrMaterial;
+var StoneWorkMaterial;
 
 function createMaterial() {
-   pbrMaterial = new THREE.MeshStandardMaterial({
-       map: tex.albedo,
-       aoMap: tex.ao,
-       metalnessMap: tex.metalness,
-       normalMap: tex.normal,
-       roughnessMap: tex.roughness,
-       displacementMap: tex.displacement,
+   StoneWorkMaterial = new THREE.MeshStandardMaterial({
+       map: StoneWorkTextures.albedo,
+       aoMap: StoneWorkTextures.ao,
+       metalnessMap: StoneWorkTextures.metalness,
+       normalMap: StoneWorkTextures.normal,
+       roughnessMap: StoneWorkTextures.roughness,
+       displacementMap: StoneWorkTextures.displacement,
        displacementScale: 1,
        side: THREE.DoubleSide,
        // wireframe: true,
    });
 
-   mesh.material = pbrMaterial;
+   mesh.material = StoneWorkMaterial;
 }
 
 
