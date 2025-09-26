@@ -9,7 +9,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Oswald", sans-serif;
+    font-family: "Alan Sans", sans-serif;
     text-transform: uppercase;
     color: rgb(255, 212, 250);
 }
@@ -122,7 +122,7 @@ footer {
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    font-family: "Oswald", sans-serif;
+    font-family: "Alan Sans", sans-serif;
     font-size: 14px;
     font-weight: bold;
     text-transform: uppercase;
