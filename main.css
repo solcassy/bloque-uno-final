@@ -11,7 +11,7 @@
     box-sizing: border-box;
     font-family: "Oswald", sans-serif;
     text-transform: uppercase;
-    color: rgb(244, 165, 235);
+    color: rgb(255, 212, 250);
 }
 
 #lienzo {
@@ -58,6 +58,51 @@ footer {
     bottom: 5vh;
     right: 2.2vh;
     width: 10vh;
+}
+/* Info panel */
+.info-panel {
+    position: absolute;
+    left: 2vh;
+    bottom: 20vh;
+    max-width: 36ch;
+    color: #fff;
+    z-index: 20;
+}
+
+.info-title {
+    font-size: 1rem;
+    letter-spacing: 0.06em;
+    margin-bottom: 0.5rem;
+}
+
+.info-list {
+    list-style: none;
+    display: grid;
+    gap: 0.25rem;
+    margin-bottom: 0.6rem;
+}
+
+.info-meta {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    opacity: 0.9;
+}
+
+.info-name {
+    font-size: 0.9rem;
+}
+
+.info-link {
+    font-size: 0.9rem;
+    color: #fff;
+    text-decoration: none;
+    border-bottom: 1px dotted rgba(255,255,255,0.6);
+    cursor: pointer;
+}
+
+.info-link:hover {
+    opacity: 0.8;
 }
 /* Button Styles */
 .buttons-container {
