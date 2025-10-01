@@ -19,7 +19,7 @@
     top: 0; left: 0;
     width: 100%;
     height: 100%;
-    background-color: #fcadff;
+    background: linear-gradient(135deg, #4a1a2f 0%, #31081f 30%, #1f0512 70%, #0f0208 100%);
 }
 
 header {

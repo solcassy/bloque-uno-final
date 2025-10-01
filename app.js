@@ -13,6 +13,7 @@ const scene = new THREE.Scene();
 const renderer = new THREE.WebGLRenderer({ canvas: canvas });
 renderer.setSize(canvas.width, canvas.height);
 renderer.setClearColor("#31081F");
+renderer.setClearColor(new THREE.Color(0x31081f));
 const camera = new THREE.PerspectiveCamera(45, canvas.width / canvas.height, 0.1, 1000);
 
 // 3.1 Configurar mesh.
@@ -95,9 +96,19 @@ const rustedTextures = {
    roughness: loader.load('./assets/texturas/rusted/roughness.png'),
 };
 
+const bricksTextures = {
+   albedo: loader.load('./assets/texturas/bricks/albedo.png'),
+   ao: loader.load('./assets/texturas/bricks/ao.png'),
+   metalness: loader.load('./assets/texturas/bricks/metallic.png'),
+   normal: loader.load('./assets/texturas/bricks/normal.png'),
+   roughness: loader.load('./assets/texturas/bricks/roughness.png'),
+   displacement: loader.load('./assets/texturas/bricks/displacement.png'),
+};
+
 
 // 4. Definimos variables y la función que va a crear el material al cargar las texturas.
 var StoneWorkMaterial;
+var BricksMaterial;
 
 function createMaterial() {
    StoneWorkMaterial = new THREE.MeshStandardMaterial({
@@ -107,6 +118,18 @@ function createMaterial() {
        normalMap: StoneWorkTextures.normal,
        roughnessMap: StoneWorkTextures.roughness,
        displacementMap: StoneWorkTextures.displacement,
+       displacementScale: 1,
+       side: THREE.DoubleSide,
+       // wireframe: true,
+   });
+
+   BricksMaterial = new THREE.MeshStandardMaterial({
+       map: bricksTextures.albedo,
+       aoMap: bricksTextures.ao,
+       metalnessMap: bricksTextures.metalness,
+       normalMap: bricksTextures.normal,
+       roughnessMap: bricksTextures.roughness,
+       displacementMap: bricksTextures.displacement,
        displacementScale: 1,
        side: THREE.DoubleSide,
        // wireframe: true,
@@ -210,6 +233,21 @@ window.addEventListener("keydown", function (event) {
         } else if (mesh.material && typeof mesh.material.wireframe === "boolean") {
             mesh.material.wireframe = !mesh.material.wireframe;
         }
+    }
+});
+
+// E) Button interactions: switch materials
+document.getElementById('stoneworkbutton').addEventListener('click', function() {
+    if (StoneWorkMaterial) {
+        mesh.material = StoneWorkMaterial;
+        console.log('Switched to StoneWork material');
+    }
+});
+
+document.getElementById('bricksbutton').addEventListener('click', function() {
+    if (BricksMaterial) {
+        mesh.material = BricksMaterial;
+        console.log('Switched to Bricks material');
     }
 });
 
