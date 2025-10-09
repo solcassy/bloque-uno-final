@@ -78,6 +78,8 @@ manager.onError = function (url) {
 // 2. "Texture loader" para nuestros assets.
 const loader = new THREE.TextureLoader(manager);
 
+const cubeTexLoader = new THREE.CubeTextureLoader(manager);
+
 // 3. Cargamos texturas guardadas en el folder del proyecto.
 const StoneWorkTextures = {
    
@@ -105,10 +107,29 @@ const bricksTextures = {
    displacement: loader.load('./assets/texturas/bricks/displacement.png'),
 };
 
+const envMap = cubeTexLoader.load([
+    './assets/posx.jpg', './assets/negx.jpg',   // +X, -X
+    './assets/posy.jpg', './assets/negy.jpg',   // +Y, -Y
+    './assets/posz.jpg', './assets/negz.jpg'    // +Z, -Z
+ ]);
+ scene.background = envMap;
+
 
 // 4. Definimos variables y la función que va a crear el material al cargar las texturas.
 var StoneWorkMaterial;
 var BricksMaterial;
+rustedMaterial = new THREE.MeshStandardMaterial({
+    envMap: envMap,
+    metalness: 0.8,
+    roughness: 0.4,
+    map: rustedTextures.albedo,
+    metalnessMap: rustedTextures.metalness,
+    normalMap: rustedTextures.normal,
+    roughnessMap: rustedTextures.roughness,
+    side: THREE.DoubleSide,
+    // wireframe: true,
+});
+
 
 function createMaterial() {
    StoneWorkMaterial = new THREE.MeshStandardMaterial({
@@ -119,6 +140,7 @@ function createMaterial() {
        roughnessMap: StoneWorkTextures.roughness,
        displacementMap: StoneWorkTextures.displacement,
        displacementScale: 1,
+       envMap: envMap,
        side: THREE.DoubleSide,
        // wireframe: true,
    });
@@ -131,6 +153,7 @@ function createMaterial() {
        roughnessMap: bricksTextures.roughness,
        displacementMap: bricksTextures.displacement,
        displacementScale: 1,
+       envMap: envMap,
        side: THREE.DoubleSide,
        // wireframe: true,
    });
@@ -251,6 +274,13 @@ document.getElementById('bricksbutton').addEventListener('click', function() {
     }
 });
 
+document.getElementById('rustedbutton').addEventListener('click', function() {
+    if (rustedMaterial) {
+        mesh.material = rustedMaterial;
+        console.log('Switched to Rusted material');
+    }
+});
+
 ///////// FIN DE LA CLASE.
 
 
@@ -272,3 +302,25 @@ function animate() {
 }
 
 animate();
+
+function updateCanvasSize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+ }
+ function updateRenderer() {
+    renderer.setSize(canvas.width, canvas.height);
+ 
+    // actualizar pixel ratio (para pantallas retina, pero limitar a 2 para rendimiento)
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+ }
+ function updateCameraAspect() {
+    camera.aspect = canvas.width / canvas.height;
+    camera.updateProjectionMatrix();
+ }
+ 
+window.addEventListener("resize", function() {
+    updateCanvasSize();
+    updateRenderer();
+    updateCameraAspect();
+ });
+ 

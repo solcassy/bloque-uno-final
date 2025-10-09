@@ -164,6 +164,10 @@ footer {
     background-image: url('./assets/texturas/bricks/albedo.png');
 }
 
+#rustedbutton {
+    background-image: url('./assets/texturas/rusted/albedo.png');
+}
+
 .materialSwitch {
     position: relative;
     width: 80px;
