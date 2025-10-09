@@ -42,11 +42,11 @@ canvas.addEventListener("click", function () {
 });
 
 // 3.2 Crear luces.
-const frontLight = new THREE.PointLight("#F7A1C4", 300, 100);
+const frontLight = new THREE.PointLight("#FF8585", 300, 100);
 frontLight.position.set(7, 3, 3);
 scene.add(frontLight);
 
-const rimLight = new THREE.PointLight("#FF70A6", 50, 100);
+const rimLight = new THREE.PointLight("#FAAA8D", 50, 100);
 rimLight.position.set(-7, -3, -7);
 scene.add(rimLight);
 
